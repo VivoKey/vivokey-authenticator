@@ -28,7 +28,7 @@
  * SUCH DAMAGE.
  */
 
-package com.yubico.yubioath.model
+package com.dangerousthings.vivoauth.model
 
 import android.content.SharedPreferences
 import android.util.Base64

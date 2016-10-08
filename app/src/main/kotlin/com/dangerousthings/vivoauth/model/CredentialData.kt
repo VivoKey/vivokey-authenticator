@@ -1,4 +1,4 @@
-package com.yubico.yubioath.model
+package com.dangerousthings.vivoauth.model
 
 import android.net.Uri
 import org.apache.commons.codec.binary.Base32

@@ -28,7 +28,7 @@
  * SUCH DAMAGE.
  */
 
-package com.yubico.yubioath.fragments
+package com.dangerousthings.vivoauth.fragments
 
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -42,10 +42,10 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.Transformation
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import com.yubico.yubioath.MainActivity
-import com.yubico.yubioath.R
-import com.yubico.yubioath.model.KeyManager
-import com.yubico.yubioath.model.YubiKeyNeo
+import com.dangerousthings.vivoauth.MainActivity
+import com.dangerousthings.vivoauth.R
+import com.dangerousthings.vivoauth.model.KeyManager
+import com.dangerousthings.vivoauth.model.YubiKeyNeo
 import kotlinx.android.synthetic.main.list_codes_fragment.*
 import kotlinx.android.synthetic.main.oath_code_view.view.*
 import org.jetbrains.anko.*

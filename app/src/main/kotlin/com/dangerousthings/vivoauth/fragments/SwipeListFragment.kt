@@ -28,7 +28,7 @@
  * SUCH DAMAGE.
  */
 
-package com.yubico.yubioath.fragments
+package com.dangerousthings.vivoauth.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -38,8 +38,8 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.yubico.yubioath.MainActivity
-import com.yubico.yubioath.R
+import com.dangerousthings.vivoauth.MainActivity
+import com.dangerousthings.vivoauth.R
 import kotlinx.android.synthetic.main.swipe_list_fragment.view.*
 import java.util.*
 

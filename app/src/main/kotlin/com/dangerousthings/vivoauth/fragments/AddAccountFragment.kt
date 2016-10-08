@@ -28,7 +28,7 @@
  * SUCH DAMAGE.
  */
 
-package com.yubico.yubioath.fragments
+package com.dangerousthings.vivoauth.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -36,12 +36,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.yubico.yubioath.MainActivity
-import com.yubico.yubioath.R
-import com.yubico.yubioath.exc.StorageFullException
-import com.yubico.yubioath.model.CredentialData
-import com.yubico.yubioath.model.KeyManager
-import com.yubico.yubioath.model.YubiKeyNeo
+import com.dangerousthings.vivoauth.MainActivity
+import com.dangerousthings.vivoauth.R
+import com.dangerousthings.vivoauth.exc.StorageFullException
+import com.dangerousthings.vivoauth.model.CredentialData
+import com.dangerousthings.vivoauth.model.KeyManager
+import com.dangerousthings.vivoauth.model.YubiKeyNeo
 import kotlinx.android.synthetic.main.add_code_manual_fragment.*
 import kotlinx.android.synthetic.main.add_code_manual_fragment.view.*
 import kotlinx.android.synthetic.main.add_code_scan_fragment.*
@@ -76,7 +76,7 @@ class AddAccountFragment : Fragment(), MainActivity.OnYubiKeyNeoListener {
         try {
             data = arguments?.getString(CODE_URI)?.trim()?.let { CredentialData(it) }
         } catch (e: IllegalArgumentException) {
-            Log.e("yubioath", "Exception parsing URI", e)
+            Log.e("vivoauth", "Exception parsing URI", e)
             with(activity as MainActivity) {
                 longToast(R.string.invalid_barcode)
                 runOnUiThread {

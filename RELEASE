@@ -2,11 +2,10 @@ To make a new release:
 
 * bump versionCode and versionName in app/build.gradle
 * update NEWS
-* make sure everything is commited and make a signed tag
+* make sure everything is commited
 * ./gradlew assembleRelease
 * sign the apk using jarsigner:
-jarsigner -digestalg SHA1 -sigalg MD5withRSA -verbose -providerClass sun.security.pkcs11.SunPKCS11 -providerArg /etc/pkcs11_java.cfg -keystore NONE -storetype PKCS11 app.apk "Certificate for PIV Authentication"
+jarsigner app.apk vivo -keystore vivoauth.keystore
 * zipalign the signed apk:
 zipalign -v 4 unaligned.apk aligned.apk
-* if happy with the release: git push && git push --tags
-* copy APK to site, create signature, publish.
+* if happy with the release: git push

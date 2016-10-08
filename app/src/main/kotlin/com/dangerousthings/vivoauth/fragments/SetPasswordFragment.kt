@@ -28,7 +28,7 @@
  * SUCH DAMAGE.
  */
 
-package com.yubico.yubioath.fragments
+package com.dangerousthings.vivoauth.fragments
 
 import android.app.Activity
 import android.os.Bundle
@@ -37,10 +37,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.yubico.yubioath.MainActivity
-import com.yubico.yubioath.R
-import com.yubico.yubioath.model.KeyManager
-import com.yubico.yubioath.model.YubiKeyNeo
+import com.dangerousthings.vivoauth.MainActivity
+import com.dangerousthings.vivoauth.R
+import com.dangerousthings.vivoauth.model.KeyManager
+import com.dangerousthings.vivoauth.model.YubiKeyNeo
 import kotlinx.android.synthetic.main.set_password_fragment.view.*
 import org.jetbrains.anko.*
 import java.io.IOException
@@ -140,7 +140,7 @@ class SetPasswordFragment : Fragment(), MainActivity.OnYubiKeyNeoListener {
                 (activity as MainActivity).openFragment(SwipeListFragment())
                 activity.toast(R.string.password_updated)
             } catch (e: IOException) {
-                Log.e("yubioath", "Set password failed, retry", e)
+                Log.e("vivoauth", "Set password failed, retry", e)
                 activity.runOnUiThread {
                     swipeDialog.show(fragmentManager, "dialog")
                     activity.toast(R.string.tag_error_retry)

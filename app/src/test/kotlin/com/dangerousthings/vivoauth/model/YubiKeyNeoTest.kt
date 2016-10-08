@@ -1,7 +1,7 @@
-package com.yubico.yubioath.model
+package com.dangerousthings.vivoauth.model
 
 import android.content.SharedPreferences
-import com.yubico.yubioath.BuildConfig
+import com.dangerousthings.vivoauth.BuildConfig
 import nordpol.IsoCard
 import org.junit.Assert
 import org.junit.Test

@@ -28,44 +28,40 @@
  * SUCH DAMAGE.
  */
 
-package com.yubico.yubioath.fragments
+package com.dangerousthings.vivoauth.fragments
 
-import com.yubico.yubioath.BuildConfig
-import com.yubico.yubioath.model.CredentialData
-import org.junit.Assert.fail
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricGradleTestRunner
-import org.robolectric.annotation.Config
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
+import android.os.Bundle
+import android.support.v4.app.DialogFragment
 
-@RunWith(RobolectricGradleTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = intArrayOf(21))
-class AddAccountFragmentTest {
+import com.dangerousthings.vivoauth.R
 
-    @Test
-    fun testParseUriBad() {
-        val failingUris = listOf("http://example.com/", "otpauth://foobar?secret=kaka", "foobar", "otpauth://totp/Example:alice@google.com?secret=balhonga1&issuer=Example", "otpauth:///foo:mallory@example.com?secret=kaka")
-        for (uri in failingUris) {
-            try {
-                CredentialData(uri)
-                fail("URL $uri did not fail")
-            } catch (e: IllegalArgumentException) {
-                // Should fail.
-            }
+/**
+ * Created with IntelliJ IDEA.
+ * User: dain
+ * Date: 8/26/13
+ * Time: 4:20 PM
+ * To change this template use File | Settings | File Templates.
+ */
+class SwipeDialog : DialogFragment() {
+    private var onCancelHandler: ((DialogInterface?) -> Unit)? = null
 
-        }
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return AlertDialog.Builder(activity).apply {
+            setTitle(R.string.swipe)
+            setNegativeButton(R.string.cancel) { dialog, which -> dialog.cancel() }
+        }.create()
     }
 
-    @Test
-    fun testParseUriGood() {
-        val goodUris = listOf("otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example", "otpauth://hotp/foobar:bob@example.com?secret=blahonga2")
-        for (uri in goodUris) {
-            try {
-                CredentialData(uri)
-            } catch (e: IllegalArgumentException) {
-                System.err.println("Failed at uri: " + uri)
-                throw e
-            }
-        }
+    fun setOnCancel(func: (DialogInterface?) -> Unit) {
+        onCancelHandler = func
+    }
+
+    override fun onCancel(dialog: DialogInterface?) {
+        super.onCancel(dialog)
+
+        onCancelHandler?.invoke(dialog)
     }
 }

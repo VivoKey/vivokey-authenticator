@@ -1,4 +1,4 @@
-package com.yubico.yubioath
+package com.dangerousthings.vivoauth
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -15,13 +15,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.Toast
-import com.yubico.yubioath.exc.AppletMissingException
-import com.yubico.yubioath.exc.AppletSelectException
-import com.yubico.yubioath.exc.PasswordRequiredException
-import com.yubico.yubioath.exc.UnsupportedAppletException
-import com.yubico.yubioath.fragments.*
-import com.yubico.yubioath.model.KeyManager
-import com.yubico.yubioath.model.YubiKeyNeo
+import com.dangerousthings.vivoauth.exc.AppletMissingException
+import com.dangerousthings.vivoauth.exc.AppletSelectException
+import com.dangerousthings.vivoauth.exc.PasswordRequiredException
+import com.dangerousthings.vivoauth.exc.UnsupportedAppletException
+import com.dangerousthings.vivoauth.fragments.*
+import com.dangerousthings.vivoauth.model.KeyManager
+import com.dangerousthings.vivoauth.model.YubiKeyNeo
 import nordpol.android.AndroidCard
 import nordpol.android.OnDiscoveredTagListener
 import nordpol.android.TagDispatcher
@@ -189,16 +189,16 @@ class MainActivity : AppCompatActivity(), OnDiscoveredTagListener {
                     onPasswordMissing(keyManager, e.id, e.isMissing)
                 } catch (e: IOException) {
                     toast(R.string.tag_error)
-                    Log.e("yubioath", "IOException in handler", e)
+                    Log.e("vivoauth", "IOException in handler", e)
                 } catch (e: AppletMissingException) {
                     toast(R.string.applet_missing)
-                    Log.e("yubioath", "AppletMissingException in handler", e)
+                    Log.e("vivoauth", "AppletMissingException in handler", e)
                 } catch (e: UnsupportedAppletException) {
                     toast(R.string.unsupported_applet_version)
-                    Log.e("yubioath", "UnsupportedAppletException in handler", e)
+                    Log.e("vivoauth", "UnsupportedAppletException in handler", e)
                 } catch (e: AppletSelectException) {
                     toast(R.string.tag_error)
-                    Log.e("yubioath", "AppletSelectException in handler", e)
+                    Log.e("vivoauth", "AppletSelectException in handler", e)
                 }
             }
         }

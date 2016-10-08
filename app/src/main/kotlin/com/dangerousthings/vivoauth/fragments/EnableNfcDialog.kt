@@ -28,13 +28,41 @@
  * SUCH DAMAGE.
  */
 
-package com.yubico.yubioath.exc
+package com.dangerousthings.vivoauth.fragments
+
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.Intent
+import android.os.Build
+import android.os.Bundle
+import android.support.v4.app.DialogFragment
+
+import com.dangerousthings.vivoauth.R
 
 /**
  * Created with IntelliJ IDEA.
  * User: dain
- * Date: 8/23/13
- * Time: 4:26 PM
+ * Date: 9/20/13
+ * Time: 1:45 PM
  * To change this template use File | Settings | File Templates.
  */
-class UnsupportedAppletException(val version: ByteArray) : AppletSelectException("Unsupported applet version: " + version[0] + "." + version[1] + "." + version[2])
+class EnableNfcDialog : DialogFragment() {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        isCancelable = false
+
+        return AlertDialog.Builder(activity).apply {
+            setTitle(R.string.nfc_off)
+            setPositiveButton(R.string.enable_nfc) { dialog, which ->
+                startActivity(Intent(when {
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN -> android.provider.Settings.ACTION_NFC_SETTINGS
+                    else -> android.provider.Settings.ACTION_WIRELESS_SETTINGS
+                }))
+                dialog.dismiss()
+            }
+            setNegativeButton(R.string.close) { dialog, which ->
+                dialog.dismiss()
+                activity.finish()
+            }
+        }.create()
+    }
+}

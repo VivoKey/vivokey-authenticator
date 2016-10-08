@@ -28,14 +28,14 @@
  * SUCH DAMAGE.
  */
 
-package com.yubico.yubioath.fragments
+package com.dangerousthings.vivoauth.fragments
 
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import com.yubico.yubioath.R
-import com.yubico.yubioath.model.KeyManager
+import com.dangerousthings.vivoauth.R
+import com.dangerousthings.vivoauth.model.KeyManager
 import kotlinx.android.synthetic.main.require_password_dialog.view.*
 
 /**

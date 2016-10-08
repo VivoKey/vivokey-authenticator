@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2016, Dangerous Things LLC.  All rights reserved.
   ~ Copyright (c) 2013, Yubico AB.  All rights reserved.
   ~
   ~ Redistribution and use in source and binary forms, with or without
@@ -30,31 +31,31 @@
 
 <resources>
 
-    <string name="app_name">Yubico Authenticator</string>
+    <string name="app_name">VivoKey Authenticator</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="warning">Warning</string>
     <string name="barcode_scanner_not_found">Barcode scanner not found, do you want to install it?</string>
     <string name="invalid_barcode">The scanned barcode is invalid</string>
     <string name="scan_failed">Barcode scanning failed</string>
-    <string name="swipe">Tap your YubiKey</string>
-    <string name="swipe_and_hold">Tap and hold your YubiKey</string>
-    <string name="swipe_to_list">Tap your YubiKey to view credentials</string>
-    <string name="swipe_to_put">Tap your YubiKey to store</string>
+    <string name="swipe">Tap your VivoKey</string>
+    <string name="swipe_and_hold">Tap and hold your VivoKey</string>
+    <string name="swipe_to_list">Tap your VivoKey to view credentials</string>
+    <string name="swipe_to_put">Tap your VivoKey to store</string>
     <string name="totp">Oath TOTP</string>
     <string name="copy">Copy to clipboard</string>
     <string name="copied">Code copied to clipboard</string>
     <string name="prog_success">Credential added!</string>
-    <string name="prog_fail">Failed to program the YubiKey</string>
+    <string name="prog_fail">Failed to program the VivoKey</string>
     <string name="version">Version</string>
-    <string name="tag_error">Error in YubiKey communication!</string>
-    <string name="tag_error_retry">Error in YubiKey communication! Try again.</string>
+    <string name="tag_error">Error in VivoKey communication!</string>
+    <string name="tag_error_retry">Error in VivoKey communication! Try again.</string>
     <string name="nfc_off">NFC is disabled!</string>
     <string name="no_nfc">This device seems to not support NFC</string>
     <string name="enable_nfc">Enable NFC</string>
-    <string name="unsupported_applet_version">Unsupported YubiKey version, make sure this app is up to date!
+    <string name="unsupported_applet_version">Unsupported VivoKey version, make sure this app is up to date!
     </string>
-    <string name="applet_missing">Yubico Authenticator functionality not available on device!</string>
+    <string name="applet_missing">VivoKey Authenticator functionality not available on device!</string>
     <string name="credentials">Credentials</string>
     <string name="load_failed">Failed loading credentials</string>
     <string name="credential_name">Credential name</string>
@@ -76,7 +77,7 @@
     <string name="change_password">Change device password</string>
     <string name="password_required">Password required</string>
     <string name="input_required">Enter the missing values, and press Save</string>
-    <string name="yubikey">YubiKey</string>
+    <string name="vivokey">VivoKey</string>
     <string name="wrong_password">Incorrect password</string>
     <string name="copy_to_clipboard">Copy</string>
     <string name="read_hotp">Read a HOTP code</string>
@@ -93,18 +94,17 @@
     <string name="clear_data">Clear stored passwords</string>
     <string name="clear_countdown">Press %1$d times more to clear...</string>
     <string name="data_cleared">Stored passwords cleared!</string>
-    <string name="storage_full">YubiKey OATH storage is full!</string>
+    <string name="storage_full">VivoKey OATH storage is full!</string>
     <string name="about">About</string>
     <string name="about_text"><![CDATA[
 <p><b>About</b><br/>
-Yubico Authenticator for Android<br/>
+VivoKey Authenticator for Android<br/>
 Version: %1$s</p>
 
-<p><a href="https://developers.yubico.com/yubioath-android/">Web site</a><br/>
-<br/><a href="https://github.com/Yubico/yubioath-android/">Source code</a><br/>
-<br/><a href="http://www.youtube.com/watch?v=W7if0FW12D0">Demo video</a></p>
+<p>VivoKey Authenticator requires an NFC capable VivoKey with OATH functionality.</p>
 
-<p>Yubico Authenticator requires an NFC capable YubiKey with OATH functionality.</p>
+<p>Copyright Dangerous Things<br/>
+<a href="https://www.dangerousthings.com/">https://www.dangerousthings.com/</a></p>
 
 <p>Copyright Yubico<br/>
 <a href="http://www.yubico.com/">http://www.yubico.com/</a></p>]]></string>

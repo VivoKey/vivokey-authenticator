@@ -7,11 +7,11 @@ android {
     buildToolsVersion "24.0.2"
 
     defaultConfig {
-        applicationId "com.yubico.yubioath"
+        applicationId "com.dangerousthings.vivoauth"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 29
-        versionName "1.1.0"
+        versionCode 1
+        versionName "0.1.0"
     }
     buildTypes {
         release {

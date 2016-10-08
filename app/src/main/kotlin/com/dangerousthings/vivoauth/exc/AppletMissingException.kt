@@ -28,7 +28,7 @@
  * SUCH DAMAGE.
  */
 
-package com.yubico.yubioath.exc
+package com.dangerousthings.vivoauth.exc
 
 /**
  * Created with IntelliJ IDEA.

@@ -28,9 +28,9 @@
  * SUCH DAMAGE.
  */
 
-package com.yubico.yubioath.model
+package com.dangerousthings.vivoauth.model
 
-import com.yubico.yubioath.exc.*
+import com.dangerousthings.vivoauth.exc.*
 import nordpol.IsoCard
 import java.io.ByteArrayOutputStream
 import java.io.Closeable

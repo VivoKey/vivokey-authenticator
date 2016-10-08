@@ -28,15 +28,13 @@
  * SUCH DAMAGE.
  */
 
-package com.yubico.yubioath.exc
-
-import java.io.IOException
+package com.dangerousthings.vivoauth.exc
 
 /**
  * Created with IntelliJ IDEA.
  * User: dain
- * Date: 9/4/13
- * Time: 10:12 AM
+ * Date: 8/23/13
+ * Time: 4:26 PM
  * To change this template use File | Settings | File Templates.
  */
-class StorageFullException(message: String) : IOException(message)
+class PasswordRequiredException(message: String, val id: ByteArray, val isMissing: Boolean) : AppletSelectException(message)
