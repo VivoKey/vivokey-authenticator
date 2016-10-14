@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), OnDiscoveredTagListener {
         super.onCreate(savedInstanceState)
 
         //This causes rotation animation to look like crap.
-        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
+        if (!BuildConfig.DEBUG) window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
 
         setContentView(R.layout.main_activity)
 
