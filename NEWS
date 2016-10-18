@@ -1,3 +1,8 @@
+* Version 0.1.2 released 2016-10-17
+ ** Allow screenshots in debug builds
+ ** Use custom icon from Allen
+ ** Tweak about text
+
 * Version 0.1.1 released 2016-10-11
  ** Use SteamDesktopAuthenticator icon
 
