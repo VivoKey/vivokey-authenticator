@@ -94,19 +94,16 @@
     <string name="clear_data">Clear stored passwords</string>
     <string name="clear_countdown">Press %1$d times more to clear...</string>
     <string name="data_cleared">Stored passwords cleared!</string>
-    <string name="storage_full">VivoKey OATH storage is full!</string>
+    <string name="storage_full">VivoKey OTP storage is full!</string>
     <string name="about">About</string>
     <string name="about_text"><![CDATA[
 <p><b>About</b><br/>
 VivoKey Authenticator for Android<br/>
 Version: %1$s</p>
 
-<p>VivoKey Authenticator requires an NFC capable VivoKey with OATH functionality.</p>
+<p>VivoKey Authenticator requires a <a href="http://vivokey.com">VivoKey</a> with our OTP applet installed.</p>
 
-<p>Copyright Dangerous Things<br/>
-<a href="https://www.dangerousthings.com/">https://www.dangerousthings.com/</a></p>
-
-<p>Copyright Yubico<br/>
-<a href="http://www.yubico.com/">http://www.yubico.com/</a></p>]]></string>
+<p>© 2016 Dangerous Things LLC<br/>
+© 2012-2013 Yubico AB</p>]]></string>
 
 </resources>
