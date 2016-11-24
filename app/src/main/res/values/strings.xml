@@ -55,7 +55,7 @@
     <string name="enable_nfc">Enable NFC</string>
     <string name="unsupported_applet_version">Unsupported VivoKey version, make sure this app is up to date!
     </string>
-    <string name="applet_missing">VivoKey Authenticator functionality not available on device!</string>
+    <string name="applet_missing">VivoKey OTP functionality not available on device!</string>
     <string name="credentials">Credentials</string>
     <string name="load_failed">Failed loading credentials</string>
     <string name="credential_name">Credential name</string>
