@@ -301,14 +301,7 @@ constructor(private val keyManager: KeyManager, private val isoTag: IsoCard) : C
 
         //APDU CL INS P1 P2 L ...
         //DATA 00  00 00 00 00 ...
-        private val SELECT_COMMAND = byteArrayOf(0x00, 0xa4.toByte(), 0x04, 0x00, 0x08, 0xa0.toByte(), 0x00, 0x00, 0x05, 0x27, 0x21, 0x01, 0x01)
-		//SELECT_COMMAND: 00 A4 04 00 08 A0 00 00 05 27 21 01 01
-		//pretty sure select command is 00 and yubico AID is: A4 04 00 08 A0 00 00 05 27 21 01 01
-		//vivokey otp app hex: A0 00 00 06 17 00 61 FC 54 D5 01 01
-		//likely complete select command code is: 00 A0 00 00 06 17 00 61 FC 54 D5 01 01
-		//private val SELECT_COMMAND = byteArrayOf(0x00, 0xa0.toByte(), 0x00, 0x00, 0x06, 0x17, 0x00, 0x61, 0xFC.toByte(), 0x54, 0xd5.toByte(), 0x01, 0x01)
-		//also the version checking in this app code is skipped over.
-		
+        private val SELECT_COMMAND = byteArrayOf(0x00, 0xa4.toByte(), 0x04, 0x00, 0x0B, 0xa0.toByte(), 0x00, 0x00, 0x06, 0x17, 0x00, 0x61, 0xFC.toByte(), 0x54, 0xd5.toByte(), 0x01)
         private val SEND_REMAINING_COMMAND = byteArrayOf(0x00, SEND_REMAINING_INS, 0x00, 0x00, 0x00)
 
         private val MOD = intArrayOf(1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000)
