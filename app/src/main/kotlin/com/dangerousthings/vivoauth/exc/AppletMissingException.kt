@@ -37,4 +37,4 @@ package com.dangerousthings.vivoauth.exc
  * Time: 4:26 PM
  * To change this template use File | Settings | File Templates.
  */
-class AppletMissingException : AppletSelectException("VivoKey Authenticator applet missing!")
+class AppletMissingException : AppletSelectException("VivoKey OTP applet missing!")
