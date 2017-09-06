@@ -301,7 +301,8 @@ constructor(private val keyManager: KeyManager, private val isoTag: IsoCard) : C
 
         //APDU CL INS P1 P2 L ...
         //DATA 00  00 00 00 00 ...
-        private val SELECT_COMMAND = byteArrayOf(0x00, 0xa4.toByte(), 0x04, 0x00, 0x0B, 0xa0.toByte(), 0x00, 0x00, 0x06, 0x17, 0x00, 0x61, 0xFC.toByte(), 0x54, 0xd5.toByte(), 0x01)
+        //AID A0 00 00 07 47 00 61 FC 54 D5 01
+        private val SELECT_COMMAND = byteArrayOf(0x00, 0xA0.toByte(), 0x00, 0x00, 0x07, 0x47, 0x00, 0x61, 0xFC.toByte(), 0x54, 0xD5.toByte(), 0x01)
         private val SEND_REMAINING_COMMAND = byteArrayOf(0x00, SEND_REMAINING_INS, 0x00, 0x00, 0x00)
 
         private val MOD = intArrayOf(1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000)
