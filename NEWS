@@ -1,3 +1,17 @@
+* Version 2.0.0-alpha1 released 2017-09-26
+ ** First alpha release of redesigned UI.
+ ** Support for 7 digit credentials.
+ ** Support for non-standard time periods.
+ ** Credential pinning and filtering.
+
+* Version 1.2.1 released 2017-05-05
+ ** Better handling of errors.
+ ** No longer require NFC to be enabled when available.
+
+* Version 1.2.0 released 2017-04-26
+ ** Embedded QR scanner to avoid relying on third party app.
+ ** Experimental USB support, enabling use with YubiKey 4C or other YubiKeys via OTG cable.
+
 * Version 0.2.2 released 2016-12-07
  ** Update icon
 

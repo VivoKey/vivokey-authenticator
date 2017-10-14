@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2016, Dangerous Things LLC.  All rights reserved.
+  ~ Copyright (c) 2017, Dangerous Things LLC.  All rights reserved.
   ~ Copyright (c) 2013, Yubico AB.  All rights reserved.
   ~
   ~ Redistribution and use in source and binary forms, with or without
@@ -30,79 +30,93 @@
   -->
 
 <resources>
-
     <string name="app_name">VivoKey Authenticator</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="warning">Warning</string>
-    <string name="barcode_scanner_not_found">Barcode scanner not found, do you want to install it?</string>
-    <string name="invalid_barcode">The scanned barcode is invalid</string>
-    <string name="scan_failed">Barcode scanning failed</string>
-    <string name="swipe">Tap your VivoKey</string>
-    <string name="swipe_and_hold">Tap and hold your VivoKey</string>
-    <string name="swipe_to_list">Tap your VivoKey to view credentials</string>
-    <string name="swipe_to_put">Tap your VivoKey to store</string>
-    <string name="totp">Oath TOTP</string>
-    <string name="copy">Copy to clipboard</string>
-    <string name="copied">Code copied to clipboard</string>
-    <string name="prog_success">Credential added!</string>
-    <string name="prog_fail">Failed to program the VivoKey</string>
-    <string name="version">Version</string>
-    <string name="tag_error">Error in VivoKey communication!</string>
-    <string name="tag_error_retry">Error in VivoKey communication! Try again.</string>
-    <string name="nfc_off">NFC is disabled!</string>
-    <string name="no_nfc">This device seems to not support NFC</string>
-    <string name="enable_nfc">Enable NFC</string>
-    <string name="unsupported_applet_version">Unsupported VivoKey version, make sure this app is up to date!
-    </string>
-    <string name="applet_missing">VivoKey OTP applet not found on device!</string>
-    <string name="credentials">Credentials</string>
-    <string name="load_failed">Failed loading credentials</string>
-    <string name="credential_name">Credential name</string>
     <string name="ok">OK</string>
-    <string name="empty_list">No credentials stored on VivoKey</string>
-    <string name="enter_credential_name">Enter credential name</string>
-    <string name="enter_secret_key">Enter secret key</string>
-    <string-array name="credential_type">
-        <item>Time based (TOTP)</item>
-        <item>Counter based (HOTP)</item>
-    </string-array>
-    <string name="credential_manual_error">Incomplete credentials</string>
-    <string name="add">Add</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="close">Close</string>
-    <string name="add_account_scan">Scan account QR-code</string>
-    <string name="add_account_manual">Add account manually</string>
-    <string name="change_password">Change device password</string>
-    <string name="password_required">Password required</string>
-    <string name="input_required">Enter the missing values, and press Save</string>
-    <string name="vivokey">VivoKey</string>
-    <string name="wrong_password">Incorrect password</string>
+    <string name="password">Password</string>
+    <string name="swipe_and_hold">Tap or insert your VivoKey</string>
+    <string name="tag_error">Error in VivoKey communication!</string>
+    <string name="nfc_off">NFC is disabled!</string>
+    <string name="no_nfc">This device seems to not support NFC</string>
+
+    <string name="storage_full">VivoKey OATH storage is full!</string>
+
+    <!-- View credentials -->
+    <string name="swipe_to_list">Tap your VivoKey to view credentials</string>
+    <string name="press_for_code">Press button for code…</string>
     <string name="copy_to_clipboard">Copy</string>
+    <string name="copied">Code copied to clipboard</string>
+    <string name="add_account_scan">Scan QR-code</string>
+    <string name="add_account_manual">Manual entry</string>
+    <string name="invalid_barcode">The scanned barcode is invalid</string>
     <string name="read_hotp">Read a HOTP code</string>
+    <string name="search">Search</string>
     <string name="delete_cred">Delete credential</string>
     <string name="deleted">Credential deleted!</string>
-    <string name="password">Password</string>
+
+    <!-- Add credential -->
+    <string name="add_credential_issuer">Issuer (optional)</string>
+    <string name="add_credential_secret">Secret key</string>
+    <string name="add_credential_secret_invalid">Invalid value for secret</string>
+    <string name="add_credential_account">Account name</string>
+    <string name="add_credential_account_empty">Account name must not be empty</string>
+    <string name="add_credential_success">Credential added!</string>
+    <string name="require_touch">Require touch</string>
+    <string name="add_credential_touch_version">Requires VivoKey 4 or later</string>
+    <string name="add_credential_algo_512">SHA-512 requires VivoKey 4.3.1 or later</string>
+    <string name="period">Period</string>
+    <string name="period_30">30</string>
+    <string name="credential_type">Type</string>
+    <string-array name="credential_type">
+        <item>Time based</item>
+        <item>Counter based</item>
+    </string-array>
+    <string name="algorithm">Algorithm</string>
+    <string-array name="credential_algo">
+        <item>SHA-1</item>
+        <item>SHA-256</item>
+        <item>SHA-512</item>
+    </string-array>
+    <string name="digits">Digits</string>
+    <string-array name="credential_digits">
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
+    <!-- Password -->
+    <string name="password_required">Password required</string>
+    <string name="password_wrong">Wrong password</string>
+    <string name="password_remember">Remember password</string>
+    <string name="change_password">Change password</string>
     <string name="old_password">Current password</string>
     <string name="new_password">New password (blank for none)</string>
     <string name="verify_password">Verify password</string>
-    <string name="password_mismatch">Verify password doesn\'t match New password!</string>
-    <string name="remember_password">Remember password</string>
+    <string name="password_mismatch">Passwords don\'t match!</string>
     <string name="password_updated">Password updated!</string>
-    <string name="display_name">Display name</string>
+
+    <!-- Settings -->
+    <string name="settings">Settings</string>
+    <string name="clear">Clear</string>
     <string name="clear_data">Clear stored passwords</string>
-    <string name="clear_countdown">Press %1$d times more to clear...</string>
+    <string name="clear_data_message">This will clear all stored passwords from this device, prompting you to re-enter them when needed.</string>
     <string name="data_cleared">Stored passwords cleared!</string>
-    <string name="storage_full">VivoKey OTP storage is full!</string>
     <string name="about">About</string>
+    <string name="new_credential">New credential</string>
+
+    <string name="hide_thumbnail_title">Hide app thumbnail</string>
+    <string name="hide_thumbnail_description">Don\'t show codes in the app switcher</string>
+    <string name="warn_nfc_title">NFC warnings</string>
+    <string name="warn_nfc_description">Warn when NFC is disabled or missing</string>
+    <string name="clear_passwords_action">Clear stored passwords…</string>
+    <string name="about_action">About VivoKey Authenticator…</string>
+    <string name="about_title">About</string>
     <string name="about_text"><![CDATA[
-<p><b>About</b><br/>
 VivoKey Authenticator for Android<br/>
 Version: %1$s</p>
 
 <p>VivoKey Authenticator requires a <a href="http://vivokey.com">VivoKey</a> with our OTP applet installed.</p>
-
 <p>© 2016 Dangerous Things LLC<br/>
 © 2012-2013 Yubico AB</p>]]></string>
 

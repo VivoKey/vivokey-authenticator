@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dangerousthings.vivoauth">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.dangerousthings.vivoauth">
 
-    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.NFC"/>
 
     <uses-feature
+        android:name="android.hardware.usb.host"
+        android:required="false"/>
+    <uses-feature
         android:name="android.hardware.nfc"
-        android:required="true" />
+        android:required="false"/>
 
     <application
         android:allowBackup="true"
@@ -14,12 +18,87 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data
+                    android:host="my.yubico.com"
+                    android:pathPrefix="/neo/"
+                    android:scheme="https"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="my.yubico.com"
+                    android:pathPrefix="/neo/"
+                    android:scheme="https"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter"/>
         </activity>
+
+        <activity
+            android:name=".ui.add.AddCredentialActivity"
+            android:label="@string/new_credential"
+            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="otpauth"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dangerousthings.vivoauth.ui.main.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name=".ui.password.PasswordActivity"
+            android:label="@string/change_password"
+            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:launchMode="singleTask">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dangerousthings.vivoauth.ui.main.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:label="@string/settings"
+            android:configChanges="orientation|keyboard|keyboardHidden">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dangerousthings.vivoauth.ui.main.MainActivity"/>
+        </activity>
+
+        <!-- This keeps the app in portrait mode when scanning QR codes -->
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation"/>
     </application>
 
 </manifest>
