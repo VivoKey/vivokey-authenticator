@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="yubicoPrimaryGreen">#9aca3c</color>
+    <color name="yubicoPrimaryWhite">#ffffff</color>
+
+    <color name="yubicoSecondaryBlue">#284c61</color>
+    <color name="yubicoSecondaryLightGray">#939598</color>
+    <color name="yubicoSecondaryDarkGray">#333333</color>
 </resources>

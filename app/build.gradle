@@ -3,15 +3,16 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
 
     defaultConfig {
         applicationId "com.yubico.yubioath"
         minSdkVersion 15
-        targetSdkVersion 24
-        versionCode 29
-        versionName "1.1.0"
+        targetSdkVersion 26
+        versionCode 19900
+        versionName "2.0.0-alpha1"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -30,16 +31,32 @@ android {
 }
 
 dependencies {
-    testCompile 'org.robolectric:robolectric:3.0'
+    testCompile 'org.robolectric:robolectric:3.4.2'
     testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.1.0-beta.121'
-    compile 'commons-codec:commons-codec:1.5'
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    compile group: 'com.fidesmo', name: 'nordpol-android', version: '0.1.20', ext: 'aar', transitive: true
+    testCompile 'org.mockito:mockito-core:2.8.47'
+
+    compile 'commons-codec:commons-codec:1.6'
+    compile group: 'com.fidesmo', name: 'nordpol-android', version: '0.1.21', ext: 'aar', transitive: true
+    compile 'com.journeyapps:zxing-android-embedded:3.4.0'
+
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile 'org.jetbrains.anko:anko-common:0.9'
-    compile 'org.jetbrains.anko:anko-sdk23:0.9'
+    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.17'
+    compile 'org.jetbrains.anko:anko-common:0.10.1'
+    compile 'org.jetbrains.anko:anko-sdk15:0.10.1'
+    compile "org.jetbrains.anko:anko-coroutines:0.10.1"
+
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:preference-v14:26.1.0'
+    compile 'android.arch.lifecycle:runtime:1.0.0'
+    compile 'android.arch.lifecycle:extensions:1.0.0-alpha9-1'
+    annotationProcessor 'android.arch.lifecycle:compiler:1.0.0-alpha9-1'
 }
 repositories {
     mavenCentral()
+}
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
 }
