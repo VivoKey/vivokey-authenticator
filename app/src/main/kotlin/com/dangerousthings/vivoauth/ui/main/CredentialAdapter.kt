@@ -1,12 +1,7 @@
 package com.dangerousthings.vivoauth.ui.main
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +29,7 @@ class CredentialAdapter(private val context: Context, private val actionHandler:
 
     private val credentialStorage = context.getSharedPreferences(CREDENTIAL_STORAGE, Context.MODE_PRIVATE)
 
-    private val iconProvider = IconProvider(context)
+    private val iconManager = IconManager(context)
     private val inflater = LayoutInflater.from(context)
     var creds: Map<Credential, Code?> = initialCreds
         private set(value) {
@@ -70,6 +65,12 @@ class CredentialAdapter(private val context: Context, private val actionHandler:
         creds = creds  //Force re-sort
         notifyDataSetChanged()
     }
+
+    fun hasIcon(credential: Credential): Boolean = iconManager.hasIcon(credential)
+
+    fun setIcon(credential: Credential, icon: Bitmap) = iconManager.setIcon(credential, icon)
+
+    fun removeIcon(credential: Credential) = iconManager.removeIcon(credential)
 
     private fun Code?.formatValue(): String = when (this?.value?.length) {
         null -> context.getString(R.string.press_for_code)
@@ -111,7 +112,7 @@ class CredentialAdapter(private val context: Context, private val actionHandler:
                 return null
             }
             with(tag as CodeAdapterViewHolder) {
-                icon.imageBitmap = iconProvider.getIcon(credential)
+                icon.imageBitmap = iconManager.getIcon(credential)
 
                 issuerView.run {
                     visibility = if (credential.issuer != null) {
