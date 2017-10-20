@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.widget.ProgressBar
 import com.dangerousthings.vivoauth.R
 import com.dangerousthings.vivoauth.ui.BaseActivity
+import com.dangerousthings.vivoauth.exc.DuplicateKeyException
 import kotlinx.coroutines.experimental.CancellationException
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.delay
@@ -86,7 +87,9 @@ class AddCredentialActivity : BaseActivity<AddCredentialViewModel>(AddCredential
                                 }
                             })
                             finish()
-                        } catch(e: CancellationException) {
+                        } catch (e: CancellationException) {
+                        } catch (e: DuplicateKeyException) {
+                            markDuplicateName()
                         } catch (e: Exception) {
                             Log.e("yubioath", "exception", e)
                             validateVersion(data, viewModel.lastDeviceInfo.version)
