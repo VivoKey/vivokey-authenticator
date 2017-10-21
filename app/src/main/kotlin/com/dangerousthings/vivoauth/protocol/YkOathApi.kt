@@ -236,7 +236,8 @@ constructor(private var backend: Backend) : Closeable {
         const private val CALCULATE_ALL_INS = 0xa4.toByte()
         const private val SEND_REMAINING_INS = 0xa5.toByte()
 
-        private val AID = byteArrayOf(0xa0.toByte(), 0x00, 0x00, 0x05, 0x27, 0x21, 0x01, 0x01)
+        // VivoKey AID: A0 00 00 07 47 00 61 FC 54 D5 01 01
+        private val AID = byteArrayOf(0xA0.toByte(), 0x00, 0x00, 0x07, 0x47, 0x00, 0x61, 0xFC.toByte(), 0x54, 0xD5.toByte(), 0x01, 0x01)
 
         @Throws(UnsupportedAppletException::class)
         private fun checkVersion(version: Version) {
