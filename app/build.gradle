@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
 
     defaultConfig {
         applicationId "com.dangerousthings.vivoauth"
@@ -28,6 +27,7 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
     }
+    buildToolsVersion '26.0.2'
 }
 
 dependencies {
@@ -48,7 +48,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
     compile 'com.android.support:preference-v14:26.1.0'
-    compile 'android.arch.lifecycle:runtime:1.0.0'
+    compile 'android.arch.lifecycle:runtime:1.0.3'
     compile 'android.arch.lifecycle:extensions:1.0.0-alpha9-1'
     annotationProcessor 'android.arch.lifecycle:compiler:1.0.0-alpha9-1'
 }

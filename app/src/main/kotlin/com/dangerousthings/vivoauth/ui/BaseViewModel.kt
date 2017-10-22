@@ -1,5 +1,6 @@
 package com.dangerousthings.vivoauth.ui
 
+import android.app.Activity
 import android.app.PendingIntent
 import android.arch.lifecycle.ViewModel
 import android.content.BroadcastReceiver
@@ -8,10 +9,13 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
+import android.os.AsyncTask
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.widget.ProgressBar
 import com.dangerousthings.vivoauth.R
+import com.dangerousthings.vivoauth.R.id.progressBar
 import com.dangerousthings.vivoauth.client.KeyManager
 import com.dangerousthings.vivoauth.client.OathClient
 import com.dangerousthings.vivoauth.exc.PasswordRequiredException
@@ -22,15 +26,14 @@ import com.dangerousthings.vivoauth.protocol.YkOathApi
 import com.dangerousthings.vivoauth.transport.Backend
 import com.dangerousthings.vivoauth.transport.NfcBackend
 import com.dangerousthings.vivoauth.transport.UsbBackend
-import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.asCoroutineDispatcher
-import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.channels.Channel
-import kotlinx.coroutines.experimental.launch
 import nordpol.IsoCard
+import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.usbManager
+import java.lang.Thread.sleep
 import java.util.concurrent.Executors
 
 val EXEC = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
@@ -112,6 +115,7 @@ abstract class BaseViewModel : ViewModel() {
 
     fun nfcConnected(card: IsoCard) = launch(EXEC) {
         Log.d("yubioath", "NFC DEVICE!")
+
         services?.let {
             try {
                 useBackend(NfcBackend(card), it.keyManager)
@@ -173,41 +177,73 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     protected open suspend fun useClient(client: OathClient) = Unit
-    private suspend fun useBackend(backend: Backend, keyManager: KeyManager) {
-        try {
-            OathClient(backend, keyManager).use { client ->
-                sharedLastDeviceInfo = client.deviceInfo
-                Log.d("yubioath", "Got API, checking requests...")
-                while (!clientRequests.isEmpty) {
-                    clientRequests.receive().let { (id, func) ->
-                        if (id == null || id == client.deviceInfo.id) {
-                            func(client)
+
+    protected data class BackgroundRefreshParams(val backend: Backend, val keyManager: KeyManager)
+
+    protected inner class BackgroundRefreshTask() : AsyncTask<BackgroundRefreshParams, Void, Unit>() {
+        private fun setProgressBarIndeterminate(indeterminate: Boolean) {
+            var activity: Activity = services?.context as Activity
+            var progressBar: ProgressBar = activity.findViewById<ProgressBar>(R.id.progressBar)
+            progressBar?.isIndeterminate = indeterminate
+        }
+        override fun onPreExecute() {
+            super.onPreExecute()
+            setProgressBarIndeterminate(true)
+        }
+
+        override fun onPostExecute(result: Unit?) {
+            super.onPostExecute(result)
+
+            setProgressBarIndeterminate(false)
+        }
+
+        override fun doInBackground(vararg params: BackgroundRefreshParams): Unit {
+            var param = params[0];
+
+            try {
+                OathClient(param.backend, param.keyManager).use { client ->
+                    sharedLastDeviceInfo = client.deviceInfo
+                    Log.d("yubioath", "Got API, checking requests...")
+                    while (!clientRequests.isEmpty) {
+                        runBlocking {
+                            clientRequests.receive().let { (id, func) ->
+                                if (id == null || id == client.deviceInfo.id) {
+                                    func(client)
+                                }
+                            }
                         }
                     }
+                    runBlocking {
+                        useClient(client)
+                    }
                 }
-                useClient(client)
-            }
-        } catch (e: PasswordRequiredException) {
-            launch(UI) {
-                services?.apply {
-                    if (context is AppCompatActivity) {
-                        context.supportFragmentManager.apply {
-                            if (findFragmentByTag("dialog_require_password") == null) {
-                                val transaction = beginTransaction()
-                                RequirePasswordDialog.newInstance(keyManager, e.deviceId, e.salt, e.isMissing).show(transaction, "dialog_require_password")
+            } catch (e: PasswordRequiredException) {
+                launch(UI) {
+                    services?.apply {
+                        if (context is AppCompatActivity) {
+                            context.supportFragmentManager.apply {
+                                if (findFragmentByTag("dialog_require_password") == null) {
+                                    val transaction = beginTransaction()
+                                    RequirePasswordDialog.newInstance(param.keyManager, e.deviceId, e.salt, e.isMissing).show(transaction, "dialog_require_password")
+                                }
                             }
                         }
                     }
                 }
-            }
-        } catch (e: Exception) {
-            sharedLastDeviceInfo = DUMMY_INFO
-            Log.e("yubioath", "Error using OathClient", e)
-            launch(UI) {
-                services?.apply {
-                    context.toast(R.string.tag_error)
+            } catch (e: Exception) {
+                sharedLastDeviceInfo = DUMMY_INFO
+                Log.e("yubioath", "Error using OathClient", e)
+                launch(UI) {
+                    services?.apply {
+                        context.toast(R.string.tag_error)
+                    }
                 }
             }
         }
+    }
+
+    private suspend fun useBackend(backend: Backend, keyManager: KeyManager) {
+        var param = BackgroundRefreshParams(backend, keyManager)
+        BackgroundRefreshTask().execute(param)
     }
 }

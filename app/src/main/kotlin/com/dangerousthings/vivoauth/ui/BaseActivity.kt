@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.preference.PreferenceManager
 import android.util.Log
 import android.view.WindowManager
+import android.widget.ProgressBar
 import com.dangerousthings.vivoauth.R
 import nordpol.android.AndroidCard
 import nordpol.android.OnDiscoveredTagListener

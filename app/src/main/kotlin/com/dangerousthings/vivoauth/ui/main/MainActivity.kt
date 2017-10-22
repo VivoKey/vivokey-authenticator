@@ -7,7 +7,10 @@ import android.os.Bundle
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
+import android.view.Window
+import android.widget.ProgressBar
 import com.dangerousthings.vivoauth.R
+import com.dangerousthings.vivoauth.R.id.progressBar
 import com.dangerousthings.vivoauth.ui.BaseActivity
 import com.dangerousthings.vivoauth.ui.password.PasswordActivity
 import com.dangerousthings.vivoauth.ui.settings.SettingsActivity
