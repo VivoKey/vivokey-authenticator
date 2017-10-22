@@ -182,8 +182,8 @@ abstract class BaseViewModel : ViewModel() {
 
     protected inner class BackgroundRefreshTask() : AsyncTask<BackgroundRefreshParams, Void, Unit>() {
         private fun setProgressBarIndeterminate(indeterminate: Boolean) {
-            var activity: Activity = services?.context as Activity
-            var progressBar: ProgressBar = activity.findViewById<ProgressBar>(R.id.progressBar)
+            var activity: Activity? = services?.context as? Activity
+            var progressBar: ProgressBar? = activity?.findViewById<ProgressBar>(R.id.progressBar)
             progressBar?.isIndeterminate = indeterminate
         }
         override fun onPreExecute() {
