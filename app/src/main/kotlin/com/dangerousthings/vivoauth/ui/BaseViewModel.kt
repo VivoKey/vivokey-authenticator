@@ -219,8 +219,6 @@ abstract class BaseViewModel : ViewModel() {
                     runBlocking {
                         useClient(client)
                     }
-
-                    sleep(5000)
                 }
             } catch (e: PasswordRequiredException) {
                 launch(UI) {
