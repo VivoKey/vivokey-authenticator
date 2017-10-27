@@ -55,7 +55,7 @@ class PasswordActivity : BaseActivity<PasswordViewModel>(PasswordViewModel::clas
                         }
                         if (job.isActive) {
                             Snackbar.make(view!!, R.string.swipe_and_hold, Snackbar.LENGTH_INDEFINITE).apply {
-                                setActionTextColor(ContextCompat.getColor(context, R.color.yubicoPrimaryGreen))
+                                setActionTextColor(ContextCompat.getColor(context, R.color.primaryAccent))
                                 setAction(R.string.cancel) {
                                     job.cancel()
                                 }

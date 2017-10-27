@@ -5,7 +5,7 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
 
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/yubicoPrimaryGreen</item>
+        <item name="colorPrimary">@color/primaryAccent</item>
         <item name="colorPrimaryDark">@color/yubicoSecondaryDarkGray</item>
         <item name="colorAccent">@color/yubicoSecondaryBlue</item>
     </style>

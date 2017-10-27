@@ -123,7 +123,10 @@ class CredentialsFragment : ListFragment() {
 
         btn_scan_qr.setOnClickListener {
             hideAddToolbar()
-            IntentIntegrator.forSupportFragment(this).setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES).initiateScan()
+            var intentIntegrator = IntentIntegrator.forSupportFragment(this)
+            intentIntegrator.setPrompt(resources.getString(R.string.scan_code))
+            intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
+            intentIntegrator.initiateScan()
         }
         btn_manual_entry.setOnClickListener {
             hideAddToolbar()
@@ -268,7 +271,7 @@ class CredentialsFragment : ListFragment() {
 
     private fun snackbar(@StringRes message: Int, duration: Int): Snackbar {
         return Snackbar.make(view!!, message, duration).apply {
-            setActionTextColor(ContextCompat.getColor(context, R.color.yubicoPrimaryGreen)) //This doesn't seem to be directly styleable, unfortunately.
+            setActionTextColor(ContextCompat.getColor(context, R.color.primaryAccent)) //This doesn't seem to be directly styleable, unfortunately.
             addCallback(object : Snackbar.Callback() {
                 override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                     if (!fab.isShown && !toolbar_add.isShown) fab.show()

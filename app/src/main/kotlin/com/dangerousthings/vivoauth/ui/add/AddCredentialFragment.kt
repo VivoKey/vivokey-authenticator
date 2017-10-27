@@ -105,8 +105,7 @@ class AddCredentialFragment : Fragment() {
                         credential_type,
                         credential_period,
                         credential_digits,
-                        credential_algo,
-                        credential_touch).forEach { it.isEnabled = value }
+                        credential_algo).forEach { it.isEnabled = value }
                 field = value
             }
         }
@@ -152,10 +151,9 @@ class AddCredentialFragment : Fragment() {
         }
         val digits = (6 + credential_digits.selectedItemId).toByte()
         val period = credential_period.text.toString().toInt()
-        val touch = credential_touch.isChecked
 
         return if (valid) {
-            CredentialData(secret, issuer, name, type, algo, digits, period, touch = touch)
+            CredentialData(secret, issuer, name, type, algo, digits, period)
         } else null
     }
 

@@ -63,7 +63,7 @@ class AddCredentialActivity : BaseActivity<AddCredentialViewModel>(AddCredential
                         }
                         if (job.isActive) {
                             Snackbar.make(view!!, R.string.swipe_and_hold, Snackbar.LENGTH_INDEFINITE).apply {
-                                setActionTextColor(ContextCompat.getColor(context, R.color.yubicoPrimaryGreen))
+                                setActionTextColor(ContextCompat.getColor(context, R.color.primaryAccent))
                                 job.invokeOnCompletion { dismiss() }
                                 setAction(R.string.cancel) { job.cancel() }
                             }.show()

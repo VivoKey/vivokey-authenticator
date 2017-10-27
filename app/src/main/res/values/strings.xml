@@ -35,8 +35,9 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="password">Password</string>
-    <string name="swipe_and_hold">Tap or insert your VivoKey</string>
+    <string name="swipe_and_hold">Tap your VivoKey to save</string>
     <string name="tag_error">Error in VivoKey communication!</string>
+    <string name="tag_no_applet">VivoKey OTP not installed!</string>
     <string name="nfc_off">NFC is disabled!</string>
     <string name="no_nfc">This device seems to not support NFC</string>
 
@@ -48,6 +49,7 @@
     <string name="copy_to_clipboard">Copy</string>
     <string name="copied">Code copied to clipboard</string>
     <string name="add_account_scan">Scan QR-code</string>
+    <string name="scan_code">Place QR code inside the square viewfinder.</string>
     <string name="add_account_manual">Manual entry</string>
     <string name="invalid_barcode">The scanned barcode is invalid</string>
     <string name="read_hotp">Read a HOTP code</string>

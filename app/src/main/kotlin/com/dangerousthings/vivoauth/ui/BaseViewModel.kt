@@ -18,6 +18,7 @@ import com.dangerousthings.vivoauth.R
 import com.dangerousthings.vivoauth.R.id.progressBar
 import com.dangerousthings.vivoauth.client.KeyManager
 import com.dangerousthings.vivoauth.client.OathClient
+import com.dangerousthings.vivoauth.exc.AppletMissingException
 import com.dangerousthings.vivoauth.exc.PasswordRequiredException
 import com.dangerousthings.vivoauth.keystore.ClearingMemProvider
 import com.dangerousthings.vivoauth.keystore.KeyStoreProvider
@@ -185,6 +186,8 @@ abstract class BaseViewModel : ViewModel() {
             var activity: Activity? = services?.context as? Activity
             var progressBar: ProgressBar? = activity?.findViewById<ProgressBar>(R.id.progressBar)
             progressBar?.isIndeterminate = indeterminate
+            progressBar?.scaleY = if(indeterminate) 3f else 1f
+
         }
         override fun onPreExecute() {
             super.onPreExecute()
@@ -216,6 +219,8 @@ abstract class BaseViewModel : ViewModel() {
                     runBlocking {
                         useClient(client)
                     }
+
+                    sleep(5000)
                 }
             } catch (e: PasswordRequiredException) {
                 launch(UI) {
@@ -228,6 +233,14 @@ abstract class BaseViewModel : ViewModel() {
                                 }
                             }
                         }
+                    }
+                }
+            } catch (e: AppletMissingException) {
+                sharedLastDeviceInfo = DUMMY_INFO
+                Log.e("yubioath", "No applet", e)
+                launch(UI) {
+                    services?.apply {
+                        context.toast(R.string.tag_no_applet)
                     }
                 }
             } catch (e: Exception) {
