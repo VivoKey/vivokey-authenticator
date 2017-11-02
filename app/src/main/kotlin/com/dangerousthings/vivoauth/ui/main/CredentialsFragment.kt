@@ -57,13 +57,21 @@ class CredentialsFragment : ListFragment() {
             progressBar.progress = ((1.0 - interpolatedTime) * 1000).toInt()
         }
     }
+    private val listObserver = object : DataSetObserver() {
+        override fun onChanged() {
+            //Update progress bar
+            updateProgressBar()
+            listView.alpha = 1f
+            swipe_clear_layout.isEnabled = swipeClearEnabled()
+        }
+    }
 
     private var actionMode: ActionMode? = null
 
     private val adapter: CredentialAdapter by lazy { listAdapter as CredentialAdapter }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_credentials, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        return inflater.inflate(R.layout.fragment_credentials, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -92,14 +100,6 @@ class CredentialsFragment : ListFragment() {
         }
         listAdapter = CredentialAdapter(context, actions, viewModel.creds).apply {
             viewModel.credListener = setCredentials
-            registerDataSetObserver(object : DataSetObserver() {
-                override fun onChanged() {
-                    //Update progress bar
-                    updateProgressBar()
-                    listView.alpha = 1f
-                    swipe_clear_layout.isEnabled = swipeClearEnabled()
-                }
-            })
         }
 
         listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
@@ -142,6 +142,7 @@ class CredentialsFragment : ListFragment() {
             isEnabled = swipeClearEnabled()
             setOnRefreshListener {
                 isRefreshing = false
+                actionMode?.finish()
 
                 if (viewModel.lastDeviceInfo.persistent) {
                     viewModel.clearCredentials()
@@ -167,6 +168,16 @@ class CredentialsFragment : ListFragment() {
     fun swipeClearEnabled(): Boolean {
         return false
         // !listAdapter.isEmpty
+	}
+
+    override fun onResume() {
+        super.onResume()
+        adapter.registerDataSetObserver(listObserver)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        adapter.unregisterDataSetObserver(listObserver)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -274,7 +285,7 @@ class CredentialsFragment : ListFragment() {
             val validFrom = adapter.creds.filterKeys { it.type == OathType.TOTP && it.period == 30 && !it.touch }.values.firstOrNull()?.validFrom
             if (validFrom != null) {
                 val validTo = validFrom + 30000
-                if(!timerAnimation.hasStarted() || timerAnimation.deadline != validTo) {
+                if (!timerAnimation.hasStarted() || timerAnimation.deadline != validTo) {
                     val now = System.currentTimeMillis()
                     startAnimation(timerAnimation.apply {
                         deadline = validTo
