@@ -39,7 +39,7 @@ import org.jetbrains.anko.clipboardManager
 import org.jetbrains.anko.toast
 import java.io.IOException
 
-class CredentialsFragment : ListFragment() {
+class CredentialFragment : ListFragment() {
     companion object {
         const private val REQUEST_ADD_CREDENTIAL = 1
         const private val REQUEST_SELECT_ICON = 2
@@ -128,10 +128,7 @@ class CredentialsFragment : ListFragment() {
 
         btn_scan_qr.setOnClickListener {
             hideAddToolbar()
-            var intentIntegrator = IntentIntegrator.forSupportFragment(this)
-            intentIntegrator.setPrompt(resources.getString(R.string.scan_code))
-            intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
-            intentIntegrator.initiateScan()
+            IntentIntegrator.forSupportFragment(this).setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES).initiateScan()
         }
         btn_manual_entry.setOnClickListener {
             hideAddToolbar()
