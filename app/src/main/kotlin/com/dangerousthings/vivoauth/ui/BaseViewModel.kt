@@ -7,10 +7,13 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
 import android.os.AsyncTask
 import android.os.Build
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.ProgressBar
@@ -185,8 +188,18 @@ abstract class BaseViewModel : ViewModel() {
         private fun setProgressBarIndeterminate(indeterminate: Boolean) {
             var activity: Activity? = services?.context as? Activity
             var progressBar: ProgressBar? = activity?.findViewById<ProgressBar>(R.id.progressBar)
-            progressBar?.isIndeterminate = indeterminate
-            progressBar?.scaleY = if(indeterminate) 3f else 1f
+
+            activity?.runOnUiThread({
+                progressBar?.isIndeterminate = indeterminate
+                progressBar?.scaleY = if(indeterminate) 3f else 1f
+                if(indeterminate) {
+                    var green = ContextCompat.getColor(activity, R.color.luridGreen)
+                    if(green != null)
+                        progressBar?.indeterminateDrawable?.setColorFilter(green, PorterDuff.Mode.SRC_IN)
+                } else {
+                    progressBar?.indeterminateDrawable?.clearColorFilter()
+                }
+            })
 
         }
         override fun onPreExecute() {
@@ -201,7 +214,7 @@ abstract class BaseViewModel : ViewModel() {
         }
 
         override fun doInBackground(vararg params: BackgroundRefreshParams): Unit {
-            var param = params[0];
+            var param = params[0]
 
             try {
                 OathClient(param.backend, param.keyManager).use { client ->
