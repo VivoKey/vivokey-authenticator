@@ -3,7 +3,9 @@ package com.dangerousthings.vivoauth.ui.main
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
@@ -27,6 +29,13 @@ class MainActivity : BaseActivity<OathViewModel>(OathViewModel::class.java) {
 
         // Clear storage from older version of app
         getSharedPreferences("NEO_STORE", Context.MODE_PRIVATE).edit().clear().apply()
+
+        // Custom colours for progress bar
+        var green = ContextCompat.getColor(this, R.color.luridGreen)
+        var progressBar = findViewById<ProgressBar>(R.id.progressBar)
+
+        progressBar.progressDrawable.setColorFilter(green, PorterDuff.Mode.SRC_IN)
+        progressBar.indeterminateDrawable.setColorFilter(green, PorterDuff.Mode.SRC_IN)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

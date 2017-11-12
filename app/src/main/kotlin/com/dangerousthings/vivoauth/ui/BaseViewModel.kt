@@ -192,13 +192,6 @@ abstract class BaseViewModel : ViewModel() {
             activity?.runOnUiThread({
                 progressBar?.isIndeterminate = indeterminate
                 progressBar?.scaleY = if(indeterminate) 3f else 1f
-                if(indeterminate) {
-                    var green = ContextCompat.getColor(activity, R.color.luridGreen)
-                    if(green != null)
-                        progressBar?.indeterminateDrawable?.setColorFilter(green, PorterDuff.Mode.SRC_IN)
-                } else {
-                    progressBar?.indeterminateDrawable?.clearColorFilter()
-                }
             })
 
         }

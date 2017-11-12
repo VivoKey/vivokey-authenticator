@@ -2,12 +2,14 @@ package com.dangerousthings.vivoauth.ui.add
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ProgressBar
 import com.dangerousthings.vivoauth.R
 import com.dangerousthings.vivoauth.ui.BaseActivity
 import kotlinx.coroutines.experimental.CancellationException
@@ -33,6 +35,13 @@ class AddCredentialActivity : BaseActivity<AddCredentialViewModel>(AddCredential
         intent.data?.let {
             viewModel.handleScanResults(it)
         }
+
+        // Custom colours for progress bar
+        var green = ContextCompat.getColor(this, R.color.luridGreen)
+        var progressBar = findViewById<ProgressBar>(R.id.progressBar)
+
+        progressBar.progressDrawable.setColorFilter(green, PorterDuff.Mode.SRC_IN)
+        progressBar.indeterminateDrawable.setColorFilter(green, PorterDuff.Mode.SRC_IN)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
