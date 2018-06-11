@@ -45,7 +45,7 @@
 
     <!-- View credentials -->
     <string name="swipe_to_list">Tap your VivoKey to view credentials</string>
-    <string name="press_for_code">Press button for code…</string>
+    <string name="press_for_code">Tap refresh for code…</string>
     <string name="copy_to_clipboard">Copy</string>
     <string name="copied">Code copied to clipboard</string>
     <string name="add_account_scan">Scan QR-code</string>
