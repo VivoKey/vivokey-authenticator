@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.Transformation
 import android.widget.BaseAdapter
+import android.widget.Toast
 import com.dangerousthings.vivoauth.R
 import com.dangerousthings.vivoauth.client.Code
 import com.dangerousthings.vivoauth.client.Credential
@@ -50,6 +52,11 @@ class CredentialAdapter(private val context: Context, private val actionHandler:
     private var notifyTimeout: Job? = null
 
     val setCredentials = fun(credentials: Map<Credential, Code?>, searchFilter: String) = launch(UI) {
+        if(credentials.isEmpty()) {
+            launch(UI) {
+                Toast.makeText(this@CredentialAdapter.context, "No credentials present on VivoKey.", Toast.LENGTH_SHORT).show()
+            }
+        }
         creds = credentials.filterKeys { it.key.contains(searchFilter, true) }
         notifyDataSetChanged()
         notifyNextTimeout(credentials)
