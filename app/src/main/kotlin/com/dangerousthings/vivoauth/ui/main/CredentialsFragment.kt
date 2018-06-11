@@ -93,7 +93,7 @@ class CredentialsFragment : ListFragment() {
                     //Update progress bar
                     updateProgressBar()
                     listView.alpha = 1f
-                    swipe_clear_layout.isEnabled = !isEmpty
+                    swipe_clear_layout.isEnabled = swipeClearEnabled()
                 }
             })
         }
@@ -135,7 +135,7 @@ class CredentialsFragment : ListFragment() {
 
         fixSwipeClearDrawable()
         swipe_clear_layout.apply {
-            isEnabled = !listAdapter.isEmpty
+            isEnabled = swipeClearEnabled()
             setOnRefreshListener {
                 isRefreshing = false
 
@@ -158,6 +158,11 @@ class CredentialsFragment : ListFragment() {
                 }
             }
         }
+    }
+
+    fun swipeClearEnabled(): Boolean {
+        return false
+        // !listAdapter.isEmpty
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
