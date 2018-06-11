@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="luridGreen">#9aca3c</color>
-    <color name="primaryAccent">#1284d7</color>
+    <!--color name="primaryAccent">#1284d7</color-->
+    <color name="primaryAccent">#3F6780</color>
     <color name="primaryWhite">#ffffff</color>
 
     <color name="yubicoSecondaryBlue">#284c61</color>
