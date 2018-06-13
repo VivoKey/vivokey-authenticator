@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.dangerousthings.vivoauth">
+          package="com.vivokey.vivoauth">
 
     <uses-permission android:name="android.permission.NFC"/>
 
@@ -70,7 +70,7 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.dangerousthings.vivoauth.ui.main.MainActivity"/>
+                android:value="com.vivokey.vivoauth.ui.main.MainActivity"/>
         </activity>
 
         <activity
@@ -81,7 +81,7 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.dangerousthings.vivoauth.ui.main.MainActivity"/>
+                android:value="com.vivokey.vivoauth.ui.main.MainActivity"/>
         </activity>
 
         <activity
@@ -91,7 +91,7 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.dangerousthings.vivoauth.ui.main.MainActivity"/>
+                android:value="com.vivokey.vivoauth.ui.main.MainActivity"/>
         </activity>
 
         <!-- This keeps the app in portrait mode when scanning QR codes -->

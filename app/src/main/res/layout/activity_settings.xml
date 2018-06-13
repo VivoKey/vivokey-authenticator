@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/settings_fragment"
-        android:name="com.dangerousthings.vivoauth.ui.settings.SettingsFragment"
+        android:name="com.vivokey.vivoauth.ui.settings.SettingsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

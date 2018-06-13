@@ -6,7 +6,7 @@ android {
     compileSdkVersion 26
 
     defaultConfig {
-        applicationId "com.dangerousthings.vivoauth"
+        applicationId "com.vivokey.vivoauth"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 19902
